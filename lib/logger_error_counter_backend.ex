@@ -35,6 +35,7 @@ defmodule LoggerErrorCounterBackend do
   def init({__MODULE__, opts}) do
     config = configure(opts, @defaults)
     Logger.debug "#{__MODULE__} Starting at: #{inspect config.point}"
+    Nerves.Hub.put config.point, count: 0, last_message: nil
     {:ok, config}
   end
 
